@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+@theme {
+  /* * ONLYFINANCE SURFACE SYSTEM (OKLCH)
+   * L = Lightness, C = Chroma (Intensity), H = Hue (220 is Institutional Blue-Deep)
+   */
+  --color-canvas: oklch(94% 0.01 95);          /* Off-white base */
+  --color-panel: oklch(90% 0.012 95);          /* Sidebar and anchor panels */
+  --color-card: oklch(97% 0.006 95);           /* Primary cards */
+  --color-card-elevated: oklch(99% 0.003 95);  /* Elevated/hover cards */
+  
+  /* BORDERS & DIVIDERS (Subtle hierarchy) */
+  --color-stroke-subtle: oklch(18% 0.01 220 / 12%);
+  --color-stroke-medium: oklch(18% 0.01 220 / 20%);
+  --color-stroke-strong: oklch(18% 0.01 220 / 30%);
+
+  /* ACCENTS (Monochrome) */
+  --color-accent-primary: oklch(26% 0.01 220);
+  --color-accent-glow: oklch(18% 0.01 220 / 22%);
+  --color-accent-soft: oklch(16% 0.01 220 / 6%);
+
+  /* INSTITUTIONAL TYPOGRAPHY (The 98/70/45 Rule) */
+  --text-primary: oklch(14% 0.01 220);         /* High-contrast headings */
+  --text-secondary: oklch(28% 0.01 220);       /* Clean body text */
+  --text-tertiary: oklch(42% 0.01 220);        /* Dimmed metadata */
+
+  /* FONTS */
+  --font-sans: "Sora", "Outfit", ui-sans-serif, system-ui;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* SPACING TOKENS */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+}
+
+@layer base {
+  /* 1. THE INSTITUTIONAL RESET */
+  html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    background-color: var(--color-canvas);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Universal scrollbar removal for the "App" feel */
+  *::-webkit-scrollbar { display: none !important; width: 0 !important; }
+
+  h1, h2, h3, h4 {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  /* 2. DYNAMIC BACKGROUND LAYER */
+  body {
+    background: 
+      /* Micro-grain texture for physical presence */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"),
+      /* Brand depth gradients */
+      radial-gradient(at 0% 0%, oklch(22% 0.01 220 / 8%) 0px, transparent 52%),
+      radial-gradient(at 100% 100%, oklch(12% 0 0 / 6%) 0px, transparent 50%),
+      var(--color-canvas);
+    background-attachment: fixed;
+  }
+
+  .dashboard-theme {
+    --aurora-spot-1: oklch(22% 0.01 220 / 10%);
+    --aurora-spot-2: oklch(14% 0 0 / 8%);
+    --aurora-spot-3: oklch(28% 0 0 / 7%);
+
+    --chart-grid: rgba(0, 0, 0, 0.08);
+    --chart-axis: rgba(0, 0, 0, 0.45);
+    --chart-line-primary: #111111;
+    --chart-line-secondary: #6b7280;
+    --chart-fill-primary: rgba(17, 17, 17, 0.3);
+    --chart-fill-secondary: rgba(107, 114, 128, 0.24);
+    --chart-tooltip-bg: #ffffff;
+    --chart-tooltip-border: rgba(0, 0, 0, 0.16);
+    --chart-tooltip-label: rgba(0, 0, 0, 0.7);
+    --chart-tooltip-text: #111111;
+    --chart-positive: #111111;
+    --chart-negative: #6b7280;
+    --chart-cursor: rgba(0, 0, 0, 0.05);
+  }
+
+  .dashboard-theme .sidebar-brand-logo {
+    filter: brightness(0) saturate(100%) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.2)) !important;
+  }
+
+  .dashboard-theme[data-theme='dark'] {
+    --color-canvas: oklch(11% 0.01 220);
+    --color-panel: oklch(14% 0.01 220);
+    --color-card: oklch(16% 0.01 220);
+    --color-card-elevated: oklch(20% 0.01 220);
+
+    --color-stroke-subtle: oklch(100% 0 0 / 10%);
+    --color-stroke-medium: oklch(100% 0 0 / 18%);
+    --color-stroke-strong: oklch(100% 0 0 / 30%);
+
+    --color-accent-primary: oklch(90% 0 0);
+    --color-accent-glow: oklch(100% 0 0 / 26%);
+    --color-accent-soft: oklch(100% 0 0 / 8%);
+
+    --text-primary: oklch(96% 0 0);
+    --text-secondary: oklch(82% 0.01 220);
+    --text-tertiary: oklch(66% 0.01 220);
+
+    --aurora-spot-1: oklch(90% 0 0 / 6%);
+    --aurora-spot-2: oklch(100% 0 0 / 4%);
+    --aurora-spot-3: oklch(70% 0 0 / 5%);
+
+    --chart-grid: rgba(255, 255, 255, 0.12);
+    --chart-axis: rgba(255, 255, 255, 0.6);
+    --chart-line-primary: #f5f5f5;
+    --chart-line-secondary: #c4c4c4;
+    --chart-fill-primary: rgba(245, 245, 245, 0.3);
+    --chart-fill-secondary: rgba(196, 196, 196, 0.2);
+    --chart-tooltip-bg: #171717;
+    --chart-tooltip-border: rgba(255, 255, 255, 0.2);
+    --chart-tooltip-label: rgba(255, 255, 255, 0.78);
+    --chart-tooltip-text: #f5f5f5;
+    --chart-positive: #f5f5f5;
+    --chart-negative: #bcbcbc;
+    --chart-cursor: rgba(255, 255, 255, 0.08);
+  }
+
+  .dashboard-theme[data-theme='dark'] .sidebar-brand-logo {
+    filter: brightness(0) invert(1) saturate(100%) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35)) !important;
+  }
+}
+
+@layer utilities {
+  /* 3. PREMIUM COMPONENT UTILITIES */
+
+  /* The "Glass-Plus": Reduced blur, sharp border, top-inner rim light */
+  .onlyfinance-glass {
+    background: oklch(100% 0 0 / 76%);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-stroke-subtle);
+    box-shadow: 
+      inset 0 1px 0 0 oklch(100% 0 0 / 68%),
+      0 20px 46px -24px oklch(8% 0 0 / 32%),
+      0 4px 14px -10px oklch(12% 0 0 / 22%);
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .onlyfinance-glass:hover {
+    background: oklch(100% 0 0 / 86%);
+    border-color: var(--color-stroke-strong);
+  }
+
+  .ultra-glass {
+    background: color-mix(in oklab, var(--color-card) 94%, white 6%);
+    border: 1px solid var(--color-stroke-subtle);
+    box-shadow:
+      inset 0 1px 0 0 oklch(100% 0 0 / 58%),
+      0 26px 48px -30px oklch(10% 0 0 / 34%),
+      0 8px 16px -12px oklch(10% 0 0 / 22%);
+    backdrop-filter: blur(8px);
+  }
+
+  .financial-aurora {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 12% 12%, var(--aurora-spot-1), transparent 34%),
+      radial-gradient(circle at 88% 8%, var(--aurora-spot-2), transparent 30%),
+      radial-gradient(circle at 80% 88%, var(--aurora-spot-3), transparent 33%);
+  }
+
+  .theme-drift-layer {
+    position: absolute;
+    inset: -10%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 500ms ease;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(59, 130, 246, 0.2), transparent 34%),
+      radial-gradient(circle at 78% 18%, rgba(20, 184, 166, 0.2), transparent 32%),
+      radial-gradient(circle at 70% 84%, rgba(245, 158, 11, 0.16), transparent 36%);
+    mix-blend-mode: screen;
+    filter: blur(34px) saturate(110%);
+    animation: driftLayer 16s ease-in-out infinite alternate;
+  }
+
+  .dashboard-theme[data-theme='dark'] .theme-drift-layer {
+    opacity: 0.38;
+  }
+
+  .theme-switch-flash {
+    position: absolute;
+    inset: -8%;
+    pointer-events: none;
+    z-index: 12;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0) 56%);
+    animation: themeFlash 780ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .emerald-glow-text {
+    text-shadow: 0 0 12px oklch(12% 0 0 / 20%);
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(40% 0.01 220 / 25%) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    display: block !important;
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: oklch(40% 0.01 220 / 25%);
+    border-radius: 999px;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 14px oklch(12% 0 0 / 24%);
+  }
+
+  /* Data Scannability: Forces numbers to line up vertically */
+  .num-tabular {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" on, "lnum" on;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Semantic Action States */
+  .btn-primary {
+    background: var(--text-primary);
+    color: var(--color-canvas);
+    border: 1px solid var(--text-primary);
+    font-weight: 700;
+    border-radius: 0.75rem;
+    transition: all 220ms ease;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(0.94);
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--text-primary) 14%, transparent);
+  }
+
+  .btn-secondary {
+    background: color-mix(in oklab, var(--color-card) 92%, transparent);
+    border: 1px solid var(--color-stroke-medium);
+    color: var(--text-primary);
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 220ms ease;
+  }
+
+  .btn-secondary:hover {
+    background: color-mix(in oklab, var(--color-card-elevated) 90%, transparent);
+  }
+
+  /* Layout Helper: The "Anchor Sidebar" width */
+  .sidebar-width { width: 260px; }
+
+  /* Smooth Entrance for Dashboard Widgets */
+  .animate-reveal {
+    animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes driftLayer {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    filter: blur(30px) hue-rotate(0deg) saturate(115%);
+  }
+  50% {
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.04);
+    filter: blur(34px) hue-rotate(18deg) saturate(120%);
+  }
+  100% {
+    transform: translate3d(3%, -2%, 0) scale(1.07);
+    filter: blur(36px) hue-rotate(32deg) saturate(130%);
+  }
+}
+
+@keyframes themeFlash {
+  0% { opacity: 0.45; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.08); }
+}
+
+
