@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { GlassSidebar } from '../components/GlassSidebar';
-import { AICoPilotChat } from '../components/AICoPilotChat';
+import { AICoPilotChat } from '../components/AICoPilotCha';
 import { ThemeToggle, type DashboardTheme } from '../components/ThemeToggle';
 
 export const DashboardLayout: React.FC = () => {
