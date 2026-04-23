@@ -134,7 +134,7 @@ export const SIPCalculator: React.FC = () => {
               contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderRadius: '8px', border: '1px solid var(--chart-tooltip-border)' }}
               itemStyle={{ fontFamily: 'var(--font-mono)' }}
               labelStyle={{ color: 'var(--chart-tooltip-label)' }}
-              formatter={(value: any, name: any) => [`₹${Math.round(value as number).toLocaleString('en-IN')}`, name === 'wealth' ? 'Total Value' : 'Invested']}
+              formatter={(value, name) => [`₹${Math.round(Number(value)).toLocaleString('en-IN')}`, name === 'wealth' ? 'Total Value' : 'Invested']}
               labelFormatter={(label) => `Year ${label}`}
             />
             <Area type="monotone" dataKey="invested" stroke="var(--chart-line-secondary)" strokeWidth={2} fillOpacity={1} fill="url(#colorInvested)" />

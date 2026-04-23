@@ -103,7 +103,7 @@ export const EMICalculator: React.FC = () => {
                   contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderRadius: '8px', border: '1px solid var(--chart-tooltip-border)' }}
                   itemStyle={{ fontFamily: 'var(--font-mono)', color: 'var(--chart-tooltip-text)' }}
                   labelStyle={{ display: 'none' }}
-                  formatter={(value: any) => `₹${Math.round(value as number).toLocaleString('en-IN')}`}
+                  formatter={(value) => `₹${Math.round(Number(value)).toLocaleString('en-IN')}`}
                 />
               </RechartsPieChart>
             </ResponsiveContainer>

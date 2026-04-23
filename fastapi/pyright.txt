@@ -1,0 +1,4 @@
+﻿c:\Users\VIVEK\OneDrive\Desktop\FinanceDE\fastapi\main.py
+  c:\Users\VIVEK\OneDrive\Desktop\FinanceDE\fastapi\main.py:22:7 - error: "configure" is not exported from module "google.generativeai" (reportPrivateImportUsage)
+  c:\Users\VIVEK\OneDrive\Desktop\FinanceDE\fastapi\main.py:118:22 - error: "chat" is not a known attribute of module "google.generativeai" (reportAttributeAccessIssue)
+2 errors, 0 warnings, 0 informations

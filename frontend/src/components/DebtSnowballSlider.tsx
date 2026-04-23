@@ -72,7 +72,7 @@ export const DebtSnowballSlider: React.FC = () => {
               contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderRadius: '8px', border: '1px solid var(--chart-tooltip-border)' }}
               itemStyle={{ fontFamily: 'var(--font-mono)', color: 'var(--chart-tooltip-text)' }}
               labelStyle={{ color: 'var(--chart-tooltip-label)' }}
-              formatter={(value: any) => `₹${Math.round(Number(value)).toLocaleString('en-IN')}`}
+              formatter={(value) => `₹${Math.round(Number(value)).toLocaleString('en-IN')}`}
               labelFormatter={(label) => `Month ${label}`}
             />
             <Area type="monotone" dataKey="balance" stroke="var(--chart-line-primary)" strokeWidth={2} fillOpacity={1} fill="url(#colorBalance)" />

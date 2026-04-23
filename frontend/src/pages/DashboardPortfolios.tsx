@@ -64,7 +64,7 @@ export const DashboardPortfolios: React.FC = () => {
                   <Tooltip 
                     contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderRadius: '8px', border: '1px solid var(--chart-tooltip-border)' }}
                     itemStyle={{ fontFamily: 'var(--font-mono)', color: 'var(--chart-tooltip-text)' }}
-                     formatter={(value: any) => formatCurrency(value)}
+                     formatter={(value) => formatCurrency(Number(value))}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -102,7 +102,7 @@ export const DashboardPortfolios: React.FC = () => {
                   cursor={{ fill: 'var(--chart-cursor)' }}
                   contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderRadius: '8px', border: '1px solid var(--chart-tooltip-border)' }}
                   itemStyle={{ fontFamily: 'var(--font-mono)', color: 'var(--chart-tooltip-text)' }}
-                  formatter={(value: any) => [`${value}%`, 'Return']}
+                  formatter={(value) => [`${value}%`, 'Return']}
                 />
                 <Bar dataKey="return" radius={[4, 4, 4, 4]}>
                   {monthlyPerformance.map((entry, index) => (
