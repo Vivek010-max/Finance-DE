@@ -30,12 +30,14 @@ class DebtItem(BaseModel):
     monthly_emi: float
     duration_months: int
     is_tax_deductible: bool = False
+    loan_type: str
 
 class AssetItem(BaseModel):
     name: str
     current_value: float
     expected_annual_return: float
     monthly_contribution: float = 0.0
+    asset_type: str
 
 class FinancialProfile(BaseModel):
     monthly_income: float
@@ -44,12 +46,17 @@ class FinancialProfile(BaseModel):
     rent_mortgage: float = 0
     utilities_bills: float = 0
     food_groceries: float = 0
+    transport_fuel: float = 0
+    insurance_premiums: float = 0
+    healthcare_medical: float = 0
+    education_fees: float = 0
     lifestyle_luxuries: float = 0
     shopping_miscellaneous: float = 0
     debts: List[DebtItem] = []
     assets: List[AssetItem] = []
     optimization_mode: str = "Avalanche"
     monthly_extra_buffer: float = 0.0
+    emergency_fund_goal_months: int = 6
 
 class ChatRequest(BaseModel):
     message: str
